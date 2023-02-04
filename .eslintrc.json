@@ -1,0 +1,72 @@
+{
+  "env": {
+    "es6": true,
+    "jest": true,
+    "react-native/react-native": true,
+    "node": true
+  },
+  "plugins": ["react", "react-native", "@typescript-eslint", "jsx-ally", "simple-import-sort"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "ecmaFeatures": {
+      "globalReturn": true,
+      "impliedStrict": true,
+      "jsx": true
+    },
+    "project": "./tsconfig.json"
+  },
+  "extends": ["eslint:recommended", "@react-native-community", "prettier"],
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx", ".d.ts"]
+      }
+    }
+  },
+  "rules": {
+    "no-param-reassign": ["error", { "props": true, "ignorePropertyModificationsForRegex": ["^draft"] }],
+    "react/prop-types": 0,
+    "import/no-cycle": 0,
+    "eqeqeq": [2, "smart"],
+    "import/extensions": "off",
+    "@typescript-eslint/no-unused-vars": "error",
+    "react/require-default-props": "off",
+    "no-console": "off",
+    "max-len": [
+      "warn",
+      {
+        "code": 120,
+        "comments": 120,
+        "ignoreComments": true,
+        "ignoreTrailingComments": true,
+        "ignoreUrls": true,
+        "ignoreStrings": true,
+        "ignoreTemplateLiterals": true,
+        "ignoreRegExpLiterals": true
+      }
+    ],
+    "simple-import-sort/imports": [
+      "error",
+      {
+        "groups": [
+          // Absolute imports and other imports such as Vue-style `@/foo`.
+          // Anything that does not start with a dot.
+          ["^[^.]"],
+          // Things that start with a letter (or digit or underscore), or `@` followed by a letter.
+          ["^(@|$)?\\w"],
+          // Anything that starts with a dot.
+          ["^\\."],
+          // Side effect imports.
+          ["^\\u0000"]
+        ]
+      }
+    ],
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": true
+      }
+    ]
+  }
+}
