@@ -9,6 +9,8 @@ module.exports = {
         ERROR_COLOR: '#be123c',
         SUCCESS_COLOR: '#15803d',
         INFO_COLOR: '#2563eb',
+        WHITE: '#000000',
+        SKY_300: '#7dd3fc',
       },
       fontFamily: {
         mono: ['monospace'],

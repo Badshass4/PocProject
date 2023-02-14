@@ -1,28 +1,26 @@
-import { View, Button, FlatList } from 'react-native';
+import { View, FlatList } from 'react-native';
 import React from 'react';
-import { StackNavigationProp } from '@react-navigation/stack';
-import { RootStackParamList } from '../../navigation/RootNavigation';
-import { useGetMatchesQuery } from '../../redux/api/matches.api';
-import { MATCH_TYPE, TYPE } from '../../utils/constant';
-import Loader from '../../components/Loader';
+import MatchCard from '../../components/MatchCard';
+import tw from '../../lib/tailwind';
 
-type HomeProps = StackNavigationProp<RootStackParamList, 'Home'>;
-const Home = () => {
-  const getMatches = useGetMatchesQuery(TYPE.RECENT);
-  const { data, error, isLoading } = getMatches;
+type HomeProps = {
+  seriesMatches: any;
+};
+const Home = (props: HomeProps): JSX.Element => {
+  const { seriesMatches } = props;
 
-  const renderItem = ({ item }: { item: keyof typeof MATCH_TYPE }): JSX.Element => {
-    return <Button title={item} />;
+  const renderItem = ({ item }: { item: any }) => {
+    if (typeof item?.seriesAdWrapper === undefined) {
+      return <></>;
+    }
+    const matchesView = item?.seriesAdWrapper?.matches.map((match: any) => {
+      return <MatchCard match={match} />;
+    });
+    return matchesView;
   };
-
-  if (isLoading) return <Loader />;
   return (
-    <View>
-      <FlatList
-        keyExtractor={(index: Number) => index.toString()}
-        data={data?.filters?.matchType}
-        renderItem={renderItem}
-      />
+    <View style={tw`mx-3`}>
+      <FlatList data={seriesMatches} renderItem={renderItem} />
     </View>
   );
 };

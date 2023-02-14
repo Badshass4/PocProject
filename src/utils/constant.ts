@@ -1,3 +1,7 @@
+export enum MAIN_ROUTE {
+  HOME = 'HOME',
+}
+
 export enum MATCH_TYPE {
   INTERNATIONAL = 'International',
   LEAGUE = 'League',
